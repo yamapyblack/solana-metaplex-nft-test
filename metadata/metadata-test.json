@@ -2,7 +2,7 @@
   "name": "yamapyblack solana test nft",
   "symbol": "YAMAPYBLACK SOLANA TEST NFT",
   "description": "It's a yamapyblack solana test nft",
-  "image": "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/1003_Mikael.png",
+  "bak_image_": "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/1003_Mikael.png",
   "animation_url": "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/1003_Mikael_movie.mp4",
   "external_url": "https://solana.com/ja/developers/courses/tokens-and-nfts/nfts-with-metaplex-core",
   "properties": {
