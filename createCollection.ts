@@ -5,28 +5,23 @@ import {
 } from "@metaplex-foundation/mpl-token-metadata";
 
 import {
-  create,
-  mplCore,
   createCollection,
+  fetchCollection,
 } from "@metaplex-foundation/mpl-core";
 import {
-  createGenericFile,
   generateSigner,
   keypairIdentity,
   percentAmount,
+  publicKey,
 } from "@metaplex-foundation/umi";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-import { base58 } from "@metaplex-foundation/umi/serializers";
-import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
 import { readFileSync } from "fs";
-import path from "path";
 
 const main = async () => {
   try {
     //
     // ** Setting Up Umi **
     //
-
     const umi = createUmi("https://api.devnet.solana.com").use(
       mplTokenMetadata()
     );
@@ -47,21 +42,19 @@ const main = async () => {
       uri: "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/collection-metadata-test.json",
     }).sendAndConfirm(umi, { send: { commitment: "finalized" } });
 
-    console.log("\nCollection Created: ", signature);
-    console.log("\nCollection Result: ", result);
-
-    return;
-
-    // const mint = generateSigner(umi);
-    // await createNft(umi, {
-    //   mint,
-    //   name: "My NFT",
-    //   uri: "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/metadata-test.json",
-    //   sellerFeeBasisPoints: percentAmount(5.5),
-    //   collection:
-    // }).sendAndConfirm(umi);
-    // const asset = await fetchDigitalAsset(umi, mint.publicKey);
-    // console.log(asset);
+    const mint = generateSigner(umi);
+    await createNft(umi, {
+      mint,
+      name: "My NFT",
+      uri: "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/metadata-test.json",
+      sellerFeeBasisPoints: percentAmount(5.5),
+      collection: {
+        key: collection.publicKey,
+        verified: false,
+      },
+    }).sendAndConfirm(umi);
+    const asset = await fetchDigitalAsset(umi, mint.publicKey);
+    console.log(asset);
   } catch (error) {
     console.error("Error creating Collection:", error);
   }

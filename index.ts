@@ -4,18 +4,14 @@ import {
   mplTokenMetadata,
 } from "@metaplex-foundation/mpl-token-metadata";
 
-import { create, mplCore } from "@metaplex-foundation/mpl-core";
 import {
-  createGenericFile,
   generateSigner,
   keypairIdentity,
   percentAmount,
+  publicKey,
 } from "@metaplex-foundation/umi";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-import { base58 } from "@metaplex-foundation/umi/serializers";
-import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
 import { readFileSync } from "fs";
-import path from "path";
 
 const main = async () => {
   try {
@@ -35,11 +31,17 @@ const main = async () => {
     umi.use(keypairIdentity(keypair));
 
     const mint = generateSigner(umi);
+    console.log("mint Address: ", mint.publicKey.toString());
+
     await createNft(umi, {
       mint,
       name: "My NFT",
       uri: "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/metadata-test.json",
       sellerFeeBasisPoints: percentAmount(5.5),
+      collection: {
+        key: publicKey("A6FDytKLtqpLmQgyGooKcMeDznyqD3gtD4NcezBowP2V"),
+        verified: false,
+      },
     }).sendAndConfirm(umi);
     const asset = await fetchDigitalAsset(umi, mint.publicKey);
     console.log(asset);
