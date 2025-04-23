@@ -38,7 +38,7 @@ const main = async () => {
     await createNft(umi, {
       mint,
       name: "My NFT",
-      uri: "https://github.com/yamapyblack/solana-metaplex-nft-test/blob/main/metadata/metadata-test.json",
+      uri: "https://raw.githubusercontent.com/yamapyblack/solana-metaplex-nft-test/refs/heads/main/metadata/metadata-test.json",
       sellerFeeBasisPoints: percentAmount(5.5),
     }).sendAndConfirm(umi);
     const asset = await fetchDigitalAsset(umi, mint.publicKey);
