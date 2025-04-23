@@ -1,0 +1,26 @@
+{
+  "name": "yamapyblack solana test nft",
+  "symbol": "YAMAPYBLACK SOLANA TEST NFT",
+  "description": "It's a yamapyblack solana test nft",
+  "image": "",
+  "animation_url": "",
+  "external_url": "",
+  "attributes": [
+    {
+      "trait_type": "attack",
+      "value": "4"
+    },
+    {
+      "trait_type": "defense",
+      "value": "3"
+    },
+    {
+      "trait_type": "durability",
+      "value": "47"
+    },
+    {
+      "trait_type": "components",
+      "value": "iron: 10; carbon: 1; wood: 2"
+    }
+  ]
+}
