@@ -1,3 +1,4 @@
 node_modules
 .env
 /wallets
+.DS_Store
